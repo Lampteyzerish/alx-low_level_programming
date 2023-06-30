@@ -1,37 +1,60 @@
 #include "main.h"
 
 /**
-* cap_string - Capitalizes all words of a string.
-* @str: The string to be capitalized.
-* Return: A pointer to the change string.
-*/
+ * separator - checks if character is a seperator
+ * @c: character to be checked
+ * Return: if seperator return 1. Otherwise return 0;
+ */
 
-char *cap_string(char *str)
-
+int separator(char c)
 {
+	/*Delcaring condition switch*/
+	switch (c)
+	{
+	case ' ':
+	case '\t':
+	case '\n':
+	case ',':
+	case ';':
+	case '.':
+	case '!':
+	case '?':
+	case '"':
+	case '(':
+	case ')':
+	case '{':
+	case '}':
+		return (1);
 
-int index = 0;
+	default:
+		return (0);
+	}
 
-while (str[index])
-{
-while (!(str[index] >= 'a' && str[index] <= 'z'))
-index++;
-if (str[index - 1] == ' ' ||
-str[index - 1] == '\t' ||
-str[index - 1] == '\n' ||
-str[index - 1] == ',' ||
-str[index - 1] == ';' ||
-str[index - 1] == '.' ||
-str[index - 1] == '!' ||
-str[index - 1] == '?' ||
-str[index - 1] == '"' ||
-str[index - 1] == '(' ||
-str[index - 1] == ')' ||
-str[index - 1] == '{' ||
-str[index - 1] == '}' ||
-index == 0)
-str[index] -= 32;
-index++;
 }
-return (str);
+/**
+ * cap_string - capitalizes chars after given deliminators
+ * @s: string to uppercase
+ * Return: returns modified string
+ */
+char *cap_string(char *s)
+{
+	int count, upper;
+
+	upper = -32; /*value constant 32*/
+
+	count = 0;
+	/*Start WHILE*/
+	while (s[count] != '\0')
+	{
+		/*letters lowercase*/
+		if (s[count] >= 'a' && s[count] <= 'z')
+		{
+			/*Convert uppercase*/
+			if (s[count] == *s || separator(s[count - 1]))
+
+				s[count] += upper;
+		}
+		count++; /*Add count*/
+	}
+	return (s);
 }
