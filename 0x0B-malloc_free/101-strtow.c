@@ -1,0 +1,4 @@
+- Prototype: char **strtow(char *str);
+- The function returns a pointer to an array of strings (words)
+- Each element of this array should contain a single word, null-terminated
+- The last element of the returned array should be NULL
